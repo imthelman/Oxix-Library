@@ -1,0 +1,1710 @@
+local Lib = {}
+
+
+
+-- // Variables //
+
+
+local uis = game:GetService('UserInputService')
+
+
+local plr = game:GetService('Players').LocalPlayer
+
+
+local plrgui = plr:WaitForChild('PlayerGui')
+
+
+local rs = game:GetService('RunService')
+
+
+local ts = game:GetService('TweenService')
+
+
+local mouse = plr:GetMouse()
+
+
+local viewport = workspace.Camera.ViewportSize
+
+
+
+--  // Functions //
+
+
+
+-- Verify
+
+
+function Lib:Verifiy(defualt, options)
+
+
+	options = options or {}
+
+
+	for i,v in defualt do
+
+
+		if options[i] == nil then
+
+
+			options[i] = defualt[i]
+
+
+		else
+
+
+			if type(options[i]) ~= type(defualt[i]) then
+
+
+				options[i] = defualt[i]
+
+
+			end
+
+
+		end
+
+
+	end
+
+
+
+	return options
+
+
+end
+
+
+
+function Lib:AddTabButton(Window)
+
+
+	-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabAddButton
+
+
+	Window["12"] = Instance.new("Frame", Window["4"]);
+
+
+	Window["12"]["BackgroundColor3"] = Color3.fromRGB(85, 85, 85);
+
+
+	Window["12"]["Size"] = UDim2.new(0, 35, 0, 35);
+
+
+	Window["12"]["Name"] = [[TabAddButton]];
+
+
+
+	-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabAddButton.TabAddButtonFrameCorner
+
+
+	Window["13"] = Instance.new("UICorner", Window["12"]);
+
+
+	Window["13"]["Name"] = [[TabAddButtonFrameCorner]];
+
+
+	Window["13"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+	-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabAddButton.TabAddButtonLabel
+
+
+	Window["14"] = Instance.new("TextLabel", Window["12"]);
+
+
+	Window["14"]["BorderSizePixel"] = 0;
+
+
+	Window["14"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+	Window["14"]["FontFace"] = Font.new([[rbxasset://fonts/families/JosefinSans.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+	Window["14"]["TextSize"] = 35;
+
+
+	Window["14"]["TextColor3"] = Color3.fromRGB(223, 223, 223);
+
+
+	Window["14"]["Size"] = UDim2.new(0, 31, 0, 23);
+
+
+	Window["14"]["Text"] = [[+]];
+
+
+	Window["14"]["Name"] = [[TabAddButtonLabel]];
+
+
+	Window["14"]["BackgroundTransparency"] = 1;
+
+
+	Window["14"]["Position"] = UDim2.new(0.09401681274175644, 0, 0.14914287626743317, 0);
+
+
+
+	-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabAddButton.TabAddButtonButton
+
+
+	Window["15"] = Instance.new("TextButton", Window["12"]);
+
+
+	Window["15"]["BorderSizePixel"] = 0;
+
+
+	Window["15"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+	Window["15"]["TextSize"] = 14;
+
+
+	Window["15"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+	Window["15"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+	Window["15"]["Size"] = UDim2.new(0, 33, 0, 38);
+
+
+	Window["15"]["Name"] = [[TabAddButtonButton]];
+
+
+	Window["15"]["Text"] = [[]];
+
+
+	Window["15"]["Position"] = UDim2.new(0.04098423570394516, 0, 0.01960797980427742, 0);
+
+
+	Window["15"]["BackgroundTransparency"] = 1;
+
+
+
+	-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabAddButton.TabAddButtonUIStroke
+
+
+	Window["16"] = Instance.new("UIStroke", Window["12"]);
+
+
+	Window["16"]["Color"] = Color3.fromRGB(33, 33, 33);
+
+
+	Window["16"]["Thickness"] = 1.75;
+
+
+	Window["16"]["Name"] = [[TabAddButtonUIStroke]];
+
+
+	
+
+
+	return Window['12']
+
+
+end
+
+
+
+local function spacestounderscore(str)
+
+
+	return tostring(str:gsub(" ","_"))
+
+
+end
+
+
+
+
+-- // Tween //
+
+
+
+local TweenService = game:GetService("TweenService")
+
+
+
+function TweenSize(Object, Property)
+
+
+	local Tween = TweenService:Create(Object, TweenInfo.new(Property["Time"]), {Size = Property["Size"]}):Play()
+
+
+
+	return Tween
+
+
+end
+
+
+
+function TweenTextTransparency(Object, Property)
+
+
+	local Tween = TweenService:Create(Object, TweenInfo.new(Property["Time"]), {TextTransparency = Property["Transparency"]}):Play()
+
+
+
+	return Tween
+
+
+end
+
+
+
+function TweenBackgroundTransparency(Object, Property)
+
+
+	local Tween = TweenService:Create(Object, TweenInfo.new(Property["Time"]), {BackgroundTransparency = Property["Transparency"]}):Play()
+
+
+
+	return Tween
+
+
+end
+
+
+
+function TweenBackgroundColor(Object, Property)
+
+
+	local Tween = TweenService:Create(Object, TweenInfo.new(Property["Time"]), {BackgroundColor3 = Property["Color"]}):Play()
+
+
+
+	return Tween
+
+
+end
+
+
+
+function TweenTextColor(Object, Property)
+
+
+	local Tween = TweenService:Create(Object, TweenInfo.new(Property["Time"]), {TextColor3 = Property["Color"]}):Play()
+
+
+
+	return Tween
+
+
+end
+
+
+
+function TweenPosition(Object, Property)
+
+
+	local Tween = TweenService:Create(Object, TweenInfo.new(Property["Time"]), {Position = Property["Position"]}):Play()
+
+
+
+	return Tween
+
+
+end
+
+
+
+-- // Main Library //
+
+
+
+-- Window
+
+
+function Lib:Window(windowparams)
+
+
+	windowparams = Lib:Verifiy({
+
+
+		Name = 'Oxix Library Window'
+
+
+	}, windowparams or {})
+
+
+
+	local Window = {
+
+
+		Tabs = {},
+
+
+		OpenTabs = {},
+
+
+		OpenTab = nil
+
+
+	}
+
+
+	-- Render
+
+
+	do
+
+
+		-- StarterGui.Oxix Lib.Hub
+
+
+		Window["1"] = Instance.new("ScreenGui", rs:IsStudio() and plr:WaitForChild("PlayerGui") or coreGui);
+
+
+		Window["1"]["Name"] = (windowparams['Name']..' Oxix Library');
+
+
+		Window["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+
+		Window["1"]["IgnoreGuiInset"] = true;
+
+
+		Window["1"]["ResetOnSpawn"] = false;
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar
+
+
+		Window["2"] = Instance.new("Frame", Window["1"]);
+
+
+		Window["2"]["ZIndex"] = -100;
+
+
+		Window["2"]["BorderSizePixel"] = 0;
+
+
+		Window["2"]["BackgroundColor3"] = Color3.fromRGB(66, 66, 66);
+
+
+		Window["2"]["Size"] = UDim2.new(0, 442, 0, 32);
+
+
+		Window["2"]["Position"] = UDim2.fromOffset((viewport.X/2) - (Window['2'].Size.X.Offset / 2), (viewport.Y/2) - (Window['2'].Size.Y.Offset / 2));
+
+
+		Window["2"]["Name"] = [[TopBar]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.TopBarCorner
+
+
+		Window["3"] = Instance.new("UICorner", Window["2"]);
+
+
+		Window["3"]["Name"] = [[TopBarCorner]];
+
+
+		Window["3"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw
+
+
+		Window["4"] = Instance.new("ScrollingFrame", Window["2"]);
+
+
+		Window["4"]["Active"] = true;
+
+
+		Window["4"]["ScrollingDirection"] = Enum.ScrollingDirection.X;
+
+
+		Window["4"]["BorderSizePixel"] = 0;
+
+
+		Window["4"]["BackgroundColor3"] = Color3.fromRGB(66, 66, 66);
+
+
+		Window["4"]["HorizontalScrollBarInset"] = Enum.ScrollBarInset.Always;
+
+
+		Window["4"]["Size"] = UDim2.new(0, 369, 0, 46);
+
+
+		Window["4"]["ScrollBarImageColor3"] = Color3.fromRGB(49, 49, 49);
+
+
+		Window["4"]["ClipsDescendants"] = false;
+
+
+		Window["4"]["Position"] = UDim2.new(0.017999999225139618, 0, 1, 0);
+
+
+		Window["4"]["Name"] = [[TabVeiw]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabBarListLayout
+
+
+		Window["5"] = Instance.new("UIListLayout", Window["4"]);
+
+
+		Window["5"]["FillDirection"] = Enum.FillDirection.Horizontal;
+
+
+		Window["5"]["Name"] = [[TabBarListLayout]];
+
+
+		Window["5"]["Padding"] = UDim.new(0, 7);
+
+
+		Window["5"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabBarListLayout.
+
+
+		Window["6"] = Instance.new("Script", Window["5"]);
+
+
+		Window["6"]["Name"] = [[]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.URLView
+
+
+		Window["17"] = Instance.new("Frame", Window["2"]);
+
+
+		Window["17"]["BorderSizePixel"] = 0;
+
+
+		Window["17"]["BackgroundColor3"] = Color3.fromRGB(66, 66, 66);
+
+
+		Window["17"]["Size"] = UDim2.new(0, 442, 0, 34);
+
+
+		Window["17"]["Position"] = UDim2.new(0, 0, 2.437999963760376, 0);
+
+
+		Window["17"]["Name"] = [[URLView]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.URLView.UrlFrame
+
+
+		Window["18"] = Instance.new("Frame", Window["17"]);
+
+
+		Window["18"]["BorderSizePixel"] = 0;
+
+
+		Window["18"]["BackgroundColor3"] = Color3.fromRGB(105, 105, 105);
+
+
+		Window["18"]["Size"] = UDim2.new(0, 372, 0, 23);
+
+
+		Window["18"]["Position"] = UDim2.new(0.04500003159046173, 0, 0, 0);
+
+
+		Window["18"]["Name"] = [[UrlFrame]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.URLView.UrlFrame.UrlLabel
+
+
+		Window["19"] = Instance.new("TextLabel", Window["18"]);
+
+
+		Window["19"]["BackgroundColor3"] = Color3.fromRGB(105, 105, 105);
+
+
+		Window["19"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+
+
+		Window["19"]["FontFace"] = Font.new([[rbxasset://fonts/families/JosefinSans.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+		Window["19"]["TextSize"] = 14;
+
+
+		Window["19"]["TextColor3"] = Color3.fromRGB(223, 223, 223);
+
+
+		Window["19"]["Size"] = UDim2.new(0, 343, 0, 23);
+
+
+		Window["19"]["Text"] = [[oxix://hub.oxix.app/Home]];
+
+
+		Window["19"]["Name"] = [[UrlLabel]];
+
+
+		Window["19"]["BackgroundTransparency"] = 1;
+
+
+		Window["19"]["Position"] = UDim2.new(0.036999937146902084, 0, 0.0649997889995575, 0);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.URLView.UrlFrame.UrlFrameCorner
+
+
+		Window["1a"] = Instance.new("UICorner", Window["18"]);
+
+
+		Window["1a"]["Name"] = [[UrlFrameCorner]];
+
+
+		Window["1a"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.URLView.UrlFrame.URLFrameUIStroke
+
+
+		Window["1b"] = Instance.new("UIStroke", Window["18"]);
+
+
+		Window["1b"]["Color"] = Color3.fromRGB(33, 33, 33);
+
+
+		Window["1b"]["Thickness"] = 1.75;
+
+
+		Window["1b"]["Name"] = [[URLFrameUIStroke]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Tabs
+
+
+		Window["1c"] = Instance.new("Frame", Window["2"]);
+
+
+		Window["1c"]["ZIndex"] = -3;
+
+
+		Window["1c"]["BackgroundColor3"] = Color3.fromRGB(66, 66, 66);
+
+
+		Window["1c"]["Size"] = UDim2.new(0, 442, 0, 195);
+
+
+		Window["1c"]["ClipsDescendants"] = true;
+
+
+		Window["1c"]["Position"] = UDim2.new(0, 0, 3.5, 0);
+
+
+		Window["1c"]["Name"] = [[Tabs]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Tabs.TabsFrameCorner
+
+
+		Window["1d"] = Instance.new("UICorner", Window["1c"]);
+
+
+		Window["1d"]["Name"] = [[TabsFrameCorner]];
+
+
+		Window["1d"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Filler
+
+
+		Window["8e"] = Instance.new("Frame", Window["2"]);
+
+
+		Window["8e"]["ZIndex"] = -102;
+
+
+		Window["8e"]["BorderSizePixel"] = 0;
+
+
+		Window["8e"]["BackgroundColor3"] = Color3.fromRGB(66, 66, 66);
+
+
+		Window["8e"]["Size"] = UDim2.new(0, 442, 1, 104);
+
+
+		Window["8e"]["BorderColor3"] = Color3.fromRGB(66, 66, 66);
+
+
+		Window["8e"]["Position"] = UDim2.new(0, 0, 0.5, 0);
+
+
+		Window["8e"]["Name"] = [[Filler]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.HubTitle
+
+
+		Window["8f"] = Instance.new("TextLabel", Window["2"]);
+
+
+		Window["8f"]["BorderSizePixel"] = 0;
+
+
+		Window["8f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+		Window["8f"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+
+
+		Window["8f"]["FontFace"] = Font.new([[rbxasset://fonts/families/JosefinSans.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+		Window["8f"]["TextSize"] = 17;
+
+
+		Window["8f"]["TextColor3"] = Color3.fromRGB(223, 223, 223);
+
+
+		Window["8f"]["Size"] = UDim2.new(0, 345, 0, 32);
+
+
+		Window["8f"]["Text"] = windowparams['Name'];
+
+
+		Window["8f"]["Name"] = [[HubTitle]];
+
+
+		Window["8f"]["BackgroundTransparency"] = 1;
+
+
+		Window["8f"]["Position"] = UDim2.new(0.04500003159046173, 0, 0, 0);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.BGPixel
+
+
+		Window["90"] = Instance.new("Frame", Window["2"]);
+
+
+		Window["90"]["ZIndex"] = -103;
+
+
+		Window["90"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+		Window["90"]["BackgroundTransparency"] = 1;
+
+
+		Window["90"]["Size"] = UDim2.new(0, 442, -0.03125, 308);
+
+
+		Window["90"]["ClipsDescendants"] = true;
+
+
+		Window["90"]["Position"] = UDim2.new(0, 0, -0.03125, 1);
+
+
+		Window["90"]["Name"] = [[BGPixel]];
+
+
+
+		Window["2"]["Position"] = UDim2.fromOffset((viewport.X/2) - (Window['90'].Size.X.Offset / 2), (viewport.Y/2) - (Window['90'].Size.Y.Offset / 2));
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.BGPixel.BGPixelUIStroke
+
+
+		Window["91"] = Instance.new("UIStroke", Window["90"]);
+
+
+		Window["91"]["Color"] = Color3.fromRGB(33, 33, 33);
+
+
+		Window["91"]["Thickness"] = 5;
+
+
+		Window["91"]["Name"] = [[BGPixelUIStroke]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.BGPixel.BGPixelCorner
+
+
+		Window["92"] = Instance.new("UICorner", Window["90"]);
+
+
+		Window["92"]["Name"] = [[BGPixelCorner]];
+
+
+		Window["92"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Close
+
+
+		Window["93"] = Instance.new("Frame", Window["2"]);
+
+
+		Window["93"]["BorderSizePixel"] = 0;
+
+
+		Window["93"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+		Window["93"]["BackgroundTransparency"] = 1;
+
+
+		Window["93"]["Size"] = UDim2.new(0, 14, 0, 14);
+
+
+		Window["93"]["Position"] = UDim2.new(0.9210000038146973, 0, 0.2919999957084656, 0);
+
+
+		Window["93"]["Name"] = [[Close]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Close.CloseButton
+
+
+		Window["94"] = Instance.new("TextButton", Window["93"]);
+
+
+		Window["94"]["BackgroundColor3"] = Color3.fromRGB(203, 7, 37);
+
+
+		Window["94"]["TextSize"] = 14;
+
+
+		Window["94"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+		Window["94"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+		Window["94"]["Size"] = UDim2.new(0, 14, 0, 14);
+
+
+		Window["94"]["Name"] = [[CloseButton]];
+
+
+		Window["94"]["Text"] = [[]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Close.CloseButton.CloseButtonCorner
+
+
+		Window["95"] = Instance.new("UICorner", Window["94"]);
+
+
+		Window["95"]["Name"] = [[CloseButtonCorner]];
+
+
+		Window["95"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Close.CloseFrameUIStroke
+
+
+		Window["96"] = Instance.new("UIStroke", Window["93"]);
+
+
+		Window["96"]["Color"] = Color3.fromRGB(33, 33, 33);
+
+
+		Window["96"]["Thickness"] = 1.75;
+
+
+		Window["96"]["Name"] = [[CloseFrameUIStroke]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Close.CloseFrameCorner
+
+
+		Window["97"] = Instance.new("UICorner", Window["93"]);
+
+
+		Window["97"]["Name"] = [[CloseFrameCorner]];
+
+
+		Window["97"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Minimize
+
+
+		Window["98"] = Instance.new("Frame", Window["2"]);
+
+
+		Window["98"]["BorderSizePixel"] = 0;
+
+
+		Window["98"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+		Window["98"]["BackgroundTransparency"] = 1;
+
+
+		Window["98"]["Size"] = UDim2.new(0, 14, 0, 14);
+
+
+		Window["98"]["Position"] = UDim2.new(0.8730000257492065, 0, 0.2919999957084656, 0);
+
+
+		Window["98"]["Name"] = [[Minimize]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Minimize.MinimizeButton
+
+
+		Window["99"] = Instance.new("TextButton", Window["98"]);
+
+
+		Window["99"]["BackgroundColor3"] = Color3.fromRGB(105, 105, 105);
+
+
+		Window["99"]["TextSize"] = 14;
+
+
+		Window["99"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+		Window["99"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+		Window["99"]["Size"] = UDim2.new(0, 14, 0, 14);
+
+
+		Window["99"]["Name"] = [[MinimizeButton]];
+
+
+		Window["99"]["Text"] = [[]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Minimize.MinimizeButton.MinimizeButtonCorner
+
+
+		Window["9a"] = Instance.new("UICorner", Window["99"]);
+
+
+		Window["9a"]["Name"] = [[MinimizeButtonCorner]];
+
+
+		Window["9a"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Minimize.MinimizeFrameUIStroke
+
+
+		Window["9b"] = Instance.new("UIStroke", Window["98"]);
+
+
+		Window["9b"]["Color"] = Color3.fromRGB(33, 33, 33);
+
+
+		Window["9b"]["Thickness"] = 1.75;
+
+
+		Window["9b"]["Name"] = [[MinimizeFrameUIStroke]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.Minimize.MinimizeFrameCorner
+
+
+		Window["9c"] = Instance.new("UICorner", Window["98"]);
+
+
+		Window["9c"]["Name"] = [[MinimizeFrameCorner]];
+
+
+		Window["9c"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+		-- StarterGui.Oxix Lib.Hub.TopBar.SettingsButton
+
+
+		Window["9d"] = Instance.new("ImageButton", Window["2"]);
+
+
+		Window["9d"]["BorderSizePixel"] = 0;
+
+
+		Window["9d"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+		Window["9d"]["Image"] = [[rbxassetid://12580707896]];
+
+
+		Window["9d"]["Size"] = UDim2.new(0, 35, 0, 35);
+
+
+		Window["9d"]["Name"] = [[SettingsButton]];
+
+
+		Window["9d"]["Position"] = UDim2.new(0.9027149677276611, 0, 2.2300000190734863, 0);
+
+
+		Window["9d"]["BackgroundTransparency"] = 1;
+
+
+
+		-- StarterGui.Oxix Lib.Hub.MouseFollow
+
+
+		Window["9e"] = Instance.new("Frame", Window["1"]);
+
+
+		Window["9e"]["ZIndex"] = 10;
+
+
+		Window["9e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+		Window["9e"]["BackgroundTransparency"] = 1;
+
+
+		Window["9e"]["Size"] = UDim2.new(0, 442, 0, 312);
+
+
+		Window["9e"]["ClipsDescendants"] = true;
+
+
+		Window["9e"]["Position"] = UDim2.new(0, 0, -0.03125, 1);
+
+
+		Window["9e"]["Name"] = [[MouseFollow]];
+
+
+
+		-- StarterGui.Oxix Lib.Hub.MouseFollow.MouseFollowImage
+
+
+		Window["9f"] = Instance.new("ImageLabel", Window["9e"]);
+
+
+		Window["9f"]["ZIndex"] = 20;
+
+
+		Window["9f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+		Window["9f"]["ImageTransparency"] = 0.7;
+
+
+		Window["9f"]["Visible"] = false;
+
+
+		Window["9f"]["Image"] = [[http://www.roblox.com/asset/?id=6673021984]];
+
+
+		Window["9f"]["Size"] = UDim2.new(0, 250, 0, 250);
+
+
+		Window["9f"]["Name"] = [[MouseFollowImage]];
+
+
+		Window["9f"]["BackgroundTransparency"] = 1;
+
+
+
+		-- StarterGui.Oxix Lib.Hub.MouseFollow.MouseFollowFrameCorner
+
+
+		Window["a1"] = Instance.new("UICorner", Window["9e"]);
+
+
+		Window["a1"]["Name"] = [[MouseFollowFrameCorner]];
+
+
+		Window["a1"]["CornerRadius"] = UDim.new(0, 12);
+
+
+	end
+
+
+
+	-- Mouse Follow Thing
+
+
+	local Heartbeat = game:GetService("RunService").Heartbeat
+
+
+	local UIS = game:GetService('UserInputService')
+
+
+	local mouse = game:GetService('Players').LocalPlayer:GetMouse()
+
+
+	local MouseFollowImage = Window['9f']
+
+
+	local inset = game:GetService("GuiService"):GetGuiInset()
+
+
+	local connection
+
+
+	connection = Heartbeat:Connect(function()
+
+
+		if uis.TouchEnabled == false then
+
+
+			local absolutePosition = uis:GetMouseLocation()
+
+
+			local relativePosition = absolutePosition - MouseFollowImage.Parent.AbsolutePosition
+
+
+
+			MouseFollowImage.Position = UDim2.fromOffset(absolutePosition.X + 50 - (Window['9e']['AbsoluteSize']['X']) - (Window['9e']['AbsolutePosition']['X']/2) + ((1000/viewport.X)), absolutePosition.Y - (Window['9e']['AbsoluteSize']['Y']) - (Window['9e']['AbsolutePosition']['Y']/2) + 125 - inset.Y*1.5 + 50)
+
+
+		end
+
+
+		Window["9e"]["Position"] = UDim2.fromOffset(Window['90']['AbsolutePosition']['X'], Window['90']['AbsolutePosition']['Y'] + 32)
+
+
+	end)
+
+
+	MouseFollowImage.Visible = true
+
+
+
+	-- Tab
+
+
+	function Window:Tab(tabparams)
+
+
+		tabparams = Lib:Verifiy({
+
+
+			Name = 'Tab'
+
+
+		}, tabparams or {})
+
+
+
+		local Tab = {
+
+
+			Active = false,
+
+
+			Hover = false
+
+
+		}
+
+
+		
+
+
+		-- Render
+
+
+		do
+
+
+			-- Container
+
+
+			do
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.Tabs.TabContainer
+
+
+				Tab["1e"] = Instance.new("ScrollingFrame", Window["1c"]);
+
+
+				Tab["1e"]["Active"] = true;
+
+
+				Tab["1e"]["BorderSizePixel"] = 0;
+
+
+				Tab["1e"]["CanvasSize"] = UDim2.new(0, 0, 5, 0);
+
+
+				Tab["1e"]["BackgroundColor3"] = Color3.fromRGB(66, 66, 66);
+
+
+				Tab["1e"]["Size"] = UDim2.new(0, 401, 0, 177);
+
+
+				Tab["1e"]["ScrollBarImageColor3"] = Color3.fromRGB(33, 33, 33);
+
+
+				Tab["1e"]["ClipsDescendants"] = false;
+
+
+				Tab["1e"]["BorderColor3"] = Color3.fromRGB(54, 54, 54);
+
+
+				Tab["1e"]["Position"] = UDim2.new(0.0429864265024662, 0, 0.03589743748307228, 0);
+
+
+				Tab["1e"]["Name"] = tabparams['Name']..[[TabContainer]];
+
+
+				Tab['1e']['Visible'] = false
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.Tabs.TabContainer.TabContainerListLayout
+
+
+				Tab["1f"] = Instance.new("UIListLayout", Tab["1e"]);
+
+
+				Tab["1f"]["Name"] = [[TabContainerListLayout]];
+
+
+				Tab["1f"]["Padding"] = UDim.new(0, 7);
+
+
+				Tab["1f"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.Tabs.TabContainer.TabContainerCorner
+
+
+				Tab["20"] = Instance.new("UICorner", Tab["1e"]);
+
+
+				Tab["20"]["Name"] = [[TabContainerCorner]];
+
+
+				Tab["20"]["CornerRadius"] = UDim.new(0, 12);
+
+
+			end
+
+
+
+			-- Button
+
+
+			do
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton
+
+
+				Tab["7"] = Instance.new("Frame", Window["4"]);
+
+
+				Tab["7"]["BackgroundColor3"] = Color3.fromRGB(85, 85, 85);
+
+
+				Tab["7"]["Size"] = UDim2.new(0, 117, 0, 35);
+
+
+				Tab["7"]["Name"] = [[TabButton]];
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonFrameCorner
+
+
+				Tab["8"] = Instance.new("UICorner", Tab["7"]);
+
+
+				Tab["8"]["Name"] = [[TabButtonFrameCorner]];
+
+
+				Tab["8"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonLabel
+
+
+				Tab["9"] = Instance.new("TextLabel", Tab["7"]);
+
+
+				Tab["9"]["BorderSizePixel"] = 0;
+
+
+				Tab["9"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+				Tab["9"]["FontFace"] = Font.new([[rbxasset://fonts/families/JosefinSans.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+				Tab["9"]["TextSize"] = 17;
+
+
+				Tab["9"]["TextColor3"] = Color3.fromRGB(223, 223, 223);
+
+
+				Tab["9"]["Size"] = UDim2.new(0, 76, 0, 33);
+
+
+				Tab["9"]["Text"] = tabparams['Name'];
+
+
+				Tab["9"]["Name"] = [[TabButtonLabel]];
+
+
+				Tab["9"]["BackgroundTransparency"] = 1;
+
+
+				Tab["9"]["Position"] = UDim2.new(0.09401709586381912, 0, 0.11764700710773468, 0);
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonButton
+
+
+				Tab["a"] = Instance.new("TextButton", Tab["7"]);
+
+
+				Tab["a"]["BorderSizePixel"] = 0;
+
+
+				Tab["a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+				Tab["a"]["TextSize"] = 14;
+
+
+				Tab["a"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+				Tab["a"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+				Tab["a"]["Size"] = UDim2.new(0, 82, 0, 38);
+
+
+				Tab["a"]["Name"] = [[TabButtonButton]];
+
+
+				Tab["a"]["Text"] = [[]];
+
+
+				Tab["a"]["Position"] = UDim2.new(0.04098380357027054, 0, 0.01960797980427742, 0);
+
+
+				Tab["a"]["BackgroundTransparency"] = 1;
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonUIStroke
+
+
+				Tab["b"] = Instance.new("UIStroke", Tab["7"]);
+
+
+				Tab["b"]["Color"] = Color3.fromRGB(33, 33, 33);
+
+
+				Tab["b"]["Thickness"] = 1.75;
+
+
+				Tab["b"]["Name"] = [[TabButtonUIStroke]];
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonCloseButton
+
+
+				Tab["c"] = Instance.new("TextButton", Tab["7"]);
+
+
+				Tab["c"]["BorderSizePixel"] = 0;
+
+
+				Tab["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+				Tab["c"]["TextSize"] = 14;
+
+
+				Tab["c"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+				Tab["c"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+				Tab["c"]["Size"] = UDim2.new(0, 23, 0, 38);
+
+
+				Tab["c"]["Name"] = [[TabButtonCloseButton]];
+
+
+				Tab["c"]["Text"] = [[]];
+
+
+				Tab["c"]["Position"] = UDim2.new(0.7435897588729858, 0, 0.01960797980427742, 0);
+
+
+				Tab["c"]["BackgroundTransparency"] = 1;
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonClose
+
+
+				Tab["d"] = Instance.new("Frame", Tab["7"]);
+
+
+				Tab["d"]["BorderSizePixel"] = 0;
+
+
+				Tab["d"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+
+
+				Tab["d"]["BackgroundTransparency"] = 1;
+
+
+				Tab["d"]["Size"] = UDim2.new(0, 14, 0, 14);
+
+
+				Tab["d"]["Position"] = UDim2.new(0.824999988079071, 0, 0.2919999957084656, 0);
+
+
+				Tab["d"]["Name"] = [[TabButtonClose]];
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonClose.RealTabButtonCloseButton
+
+
+				Tab["e"] = Instance.new("TextButton", Tab["d"]);
+
+
+				Tab["e"]["BackgroundColor3"] = Color3.fromRGB(203, 7, 37);
+
+
+				Tab["e"]["TextSize"] = 14;
+
+
+				Tab["e"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
+
+				Tab["e"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+				Tab["e"]["Size"] = UDim2.new(0, 14, 0, 14);
+
+
+				Tab["e"]["Name"] = [[RealTabButtonCloseButton]];
+
+
+				Tab["e"]["Text"] = [[]];
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonClose.RealTabButtonCloseButton.TabButtonCloseButtonCorner
+
+
+				Tab["f"] = Instance.new("UICorner", Tab["e"]);
+
+
+				Tab["f"]["Name"] = [[TabButtonCloseButtonCorner]];
+
+
+				Tab["f"]["CornerRadius"] = UDim.new(0, 12);
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonClose.TabButtonCloseFrameUIStroke
+
+
+				Tab["10"] = Instance.new("UIStroke", Tab["d"]);
+
+
+				Tab["10"]["Color"] = Color3.fromRGB(33, 33, 33);
+
+
+				Tab["10"]["Thickness"] = 1.75;
+
+
+				Tab["10"]["Name"] = [[TabButtonCloseFrameUIStroke]];
+
+
+
+				-- StarterGui.Oxix Lib.Hub.TopBar.TabVeiw.TabButton.TabButtonClose.TabButtonCloseFrameCorner
+
+
+				Tab["11"] = Instance.new("UICorner", Tab["d"]);
+
+
+				Tab["11"]["Name"] = [[TabButtonCloseFrameCorner]];
+
+
+				Tab["11"]["CornerRadius"] = UDim.new(0, 12);
+
+
+			end
+
+
+		end
+
+
+
+		-- Methods
+
+
+		function Tab:Activate()
+
+
+			if not Tab.Active then
+
+
+				if Window.OpenTab ~= nil then
+
+
+					Window.OpenTab:Deactivate()
+
+
+				end
+
+
+				TweenTextColor(Tab['9'], {Color = Color3.fromRGB(255,255,255), Time = 0.25})
+
+
+				Tab['1e']['Visible'] = true
+
+
+				Window.OpenTab = Tab
+
+
+				Tab.Active = true
+
+
+				Tab.Hover = false
+
+
+			end
+
+
+		end
+
+
+		
+
+
+		function Tab:Deactivate()
+
+
+			if Tab.Active then
+
+
+				TweenTextColor(Tab['9'], {Color = Color3.fromRGB(222,222,222), Time = 0.25})
+
+
+				Tab['1e']['Visible'] = false
+
+
+				Tab.Active = false
+
+
+				Tab.Hover = false
+
+
+			end
+
+
+		end
+
+
+		
+
+
+		-- Logic
+
+
+		do
+
+
+			Tab['7']['MouseEnter']:Connect(function()
+
+
+				if not Tab.Active then
+
+
+					TweenTextColor(Tab['9'], {Color = Color3.fromRGB(255,255,255), Time = 0.25})
+
+
+					Tab.Hover = true
+
+
+				end
+
+
+			end)
+
+
+
+			Tab['7']['MouseLeave']:Connect(function()
+
+
+				if not Tab.Active then
+
+
+					TweenTextColor(Tab['9'], {Color = Color3.fromRGB(222,222,222), Time = 0.25})
+
+
+					Tab.Hover = false
+
+
+				end
+
+
+			end)
+
+
+			
+
+
+			--[[uis.InputBegan:Connect(function(input, gpe)
+
+
+				if gpe then return end
+
+
+				
+
+
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+
+
+					if Tab.Hover then
+
+
+						print('print(\'Hello World\')')
+
+
+						Tab:Activate()
+
+
+					end
+
+
+				end
+
+
+			end)]]
+
+
+			
+
+
+			Tab['a']['MouseButton1Click']:Connect(function()
+
+
+				Tab:Activate()
+
+
+				Window['19']['Text'] = 'oxix://'..(spacestounderscore(windowparams['Name'])).lower()..'.oxix.app/'..tabparams.Name
+
+
+			end)
+
+
+			
+
+
+			if Window.OpenTab == nil then
+
+
+				Tab:Activate()
+
+
+			end
+
+
+			
+
+
+			local step
+
+
+			step = Heartbeat:Connect(function()
+
+
+				Tab["1e"]["CanvasSize"] = UDim2.fromOffset(Tab["1f"]['AbsoluteContentSize'].X, Tab["1f"]['AbsoluteContentSize'].Y);
+
+
+			end)
+
+
+		end
+
+
+
+		-- New Elements
+
+
+
+		return Tab
+
+
+	end
+
+
+	
+
+
+	local addtabbutton = Lib:AddTabButton(Window)
+
+
+	addtabbutton.TabAddButtonButton.MouseButton1Click:Connect(function()
+
+
+		addtabbutton:Destroy()
+
+
+		addtabbutton = Lib:AddTabButton(Window)
+
+
+		local newtab = Window:Tab{
+
+
+			Name = 'New Tab'
+
+
+		}
+
+
+	end)
+
+
+
+	return Window
+
+
+end
+
+
+
+return Lib
